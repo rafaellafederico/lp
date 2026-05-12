@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Noir Éternel — nova coleção de relógios Saint Germain Brand. Peças de alto padrão que carregam o silêncio de uma escolha bem feita.">
+  <title>Noir Éternel — Saint Germain Brand</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Questrial&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       RESET & VARIÁVEIS
+    ============================================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black:      #0A0A0A;
+      --gold:       #C9A961;
+      --gold-light: #D4BA7A;
+      --off-white:  #F5F1EA;
+      --gray:       #8a8a8a;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body:    'Questrial', sans-serif;
+    }
+
+    html { scroll-behavior: auto; } /* Lenis cuida disso */
+
+    body {
+      background: var(--black);
+      color: var(--off-white);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ============================================================
+       CURSOR DOURADO
+    ============================================================ */
+    #cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s ease, height 0.3s ease;
+    }
+
+    #cursor.hovering {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* ============================================================
+       1. NAVEGAÇÃO FIXA
+    ============================================================ */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.75rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.5s ease, padding 0.4s ease,
+                  backdrop-filter 0.5s ease;
+    }
+
+    #nav.scrolled {
+      background: rgba(10, 10, 10, 0.97);
+      padding: 1.1rem 4rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: clamp(0.9rem, 1.8vw, 1.15rem);
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--off-white);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      text-decoration: none;
+      opacity: 0.65;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+
+    .nav-cta {
+      color: var(--gold) !important;
+      opacity: 1 !important;
+      border: 1px solid var(--gold);
+      padding: 0.55rem 1.4rem;
+      transition: background 0.35s ease, color 0.35s ease !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold) !important;
+      color: var(--black) !important;
+    }
+
+    /* ============================================================
+       2. HERO CINEMATOGRÁFICO
+    ============================================================ */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,10,0.25) 0%,
+        rgba(10,10,10,0.50) 50%,
+        rgba(10,10,10,0.90) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 2rem;
+      max-width: 900px;
+    }
+
+    .hero-pretitle {
+      font-family: var(--font-body);
+      font-size: clamp(0.6rem, 1.3vw, 0.78rem);
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.8rem;
+      opacity: 0;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--off-white);
+      margin-bottom: 1.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-title .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(110%);
+    }
+
+    .hero-title .word-space {
+      display: inline-block;
+      width: 0.28em;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-body);
+      font-size: clamp(0.6rem, 1.3vw, 0.78rem);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      opacity: 0;
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0;
+    }
+
+    .hero-scroll-indicator span {
+      font-size: 0.58rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(245,241,234,0.55);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2.2s ease-in-out infinite;
+      transform-origin: top center;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(1); opacity: 1; }
+      50%       { transform: scaleY(0.4); opacity: 0.3; }
+    }
+
+    /* ============================================================
+       3. MANIFESTO (PINADO)
+    ============================================================ */
+    #manifesto { position: relative; }
+
+    .manifesto-inner {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .manifesto-left {
+      position: relative;
+      width: 50%;
+      height: 100vh;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .manifesto-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+
+    .manifesto-img.active { opacity: 1; }
+
+    .manifesto-right {
+      width: 50%;
+      padding: 6rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .manifesto-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .manifesto-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.2vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--off-white);
+    }
+
+    .manifesto-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+
+    .manifesto-paragraph {
+      font-size: clamp(0.82rem, 1.1vw, 0.95rem);
+      line-height: 1.9;
+      color: rgba(245,241,234,0.62);
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .manifesto-paragraph.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       4. GALERIA HORIZONTAL
+    ============================================================ */
+    #gallery { position: relative; }
+
+    .gallery-inner {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-track {
+      display: flex;
+      gap: 2rem;
+      padding: 0 5vw;
+      will-change: transform;
+      flex-shrink: 0;
+    }
+
+    .product-card {
+      flex-shrink: 0;
+      width: 75vw;
+      max-width: 680px;
+      height: 78vh;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .product-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .product-card:hover .product-card-img { transform: scale(1.04); }
+
+    .product-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10,10,10,0.88) 0%,
+        rgba(10,10,10,0.15) 55%,
+        transparent 100%
+      );
+    }
+
+    .product-card-info {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 2.5rem;
+      right: 2.5rem;
+    }
+
+    .product-tag {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.58rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 0.22rem 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .product-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.5vw, 2.6rem);
+      font-weight: 300;
+      color: var(--off-white);
+      display: block;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.02em;
+    }
+
+    .product-price {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+    }
+
+    /* ============================================================
+       5. CLOSEUP PARALLAX
+    ============================================================ */
+    #closeup {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .closeup-layers {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 52%;
+      height: 100%;
+    }
+
+    .closeup-layer {
+      position: absolute;
+      inset: -20% 0;
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+    }
+
+    .closeup-content {
+      position: relative;
+      z-index: 2;
+      margin-left: 55%;
+      padding: 2rem 4rem 2rem 2rem;
+      max-width: 480px;
+    }
+
+    .closeup-label {
+      font-family: var(--font-body);
+      font-size: 0.62rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .closeup-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 2.8vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--off-white);
+      margin-bottom: 2rem;
+    }
+
+    .closeup-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .closeup-text {
+      font-size: clamp(0.8rem, 1.1vw, 0.92rem);
+      line-height: 1.9;
+      color: rgba(245,241,234,0.62);
+    }
+
+    .closeup-text + .closeup-text { margin-top: 1.5rem; }
+
+    /* ============================================================
+       6. GRID EDITORIAL
+    ============================================================ */
+    #editorial {
+      padding: 9rem 5vw;
+    }
+
+    .editorial-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .editorial-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .editorial-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 4.5rem);
+      font-weight: 300;
+      color: var(--off-white);
+      font-style: italic;
+    }
+
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .editorial-item {
+      overflow: hidden;
+      clip-path: inset(100% 0 0 0);
+      transition: clip-path 1.3s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    .editorial-item.revealed { clip-path: inset(0% 0 0 0); }
+
+    .editorial-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s ease;
+    }
+
+    .editorial-item:hover img { transform: scale(1.03); }
+
+    .editorial-item:nth-child(1) {
+      grid-row: 1 / 3;
+      min-height: 620px;
+    }
+
+    .editorial-item:nth-child(2) { min-height: 295px; }
+    .editorial-item:nth-child(3) { min-height: 295px; }
+
+    .editorial-item:nth-child(4) {
+      grid-column: 1 / 3;
+      min-height: 380px;
+    }
+
+    /* ============================================================
+       7. CTA FINAL
+    ============================================================ */
+    #cta {
+      padding: 13rem 2rem 7rem;
+      text-align: center;
+      position: relative;
+    }
+
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--gold));
+    }
+
+    .cta-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 8rem);
+      font-weight: 300;
+      line-height: 0.95;
+      color: var(--off-white);
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .btn-cta {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 1.1rem 3.2rem;
+      text-decoration: none;
+      transition: transform 0.4s ease, background 0.35s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .btn-cta:hover {
+      transform: scale(1.02) translateY(0) !important;
+      background: var(--gold-light);
+    }
+
+    .cta-footer {
+      margin-top: 9rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(245,241,234,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .cta-copyright {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      color: rgba(245,241,234,0.28);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .social-links a {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,241,234,0.38);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover { color: var(--gold); }
+
+    /* ============================================================
+       RESPONSIVO
+    ============================================================ */
+    @media (max-width: 900px) {
+      #nav { padding: 1.4rem 2rem; }
+      #nav.scrolled { padding: 1rem 2rem; }
+      .nav-links li:not(:last-child) { display: none; }
+
+      .manifesto-inner { flex-direction: column; }
+      .manifesto-left { width: 100%; height: 48vh; }
+      .manifesto-right { width: 100%; padding: 3rem 2rem; }
+
+      .closeup-layers {
+        width: 100%;
+        height: 45vh;
+        position: relative;
+      }
+
+      #closeup {
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 5rem;
+      }
+
+      .closeup-content {
+        margin-left: 0;
+        padding: 3rem 2rem;
+        max-width: 100%;
+      }
+
+      .editorial-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+
+      .editorial-item:nth-child(1) {
+        grid-row: auto;
+        min-height: 400px;
+      }
+
+      .editorial-item:nth-child(4) { grid-column: auto; }
+
+      .cta-footer { flex-direction: column; text-align: center; }
+
+      #cursor { display: none; }
+      body { cursor: auto; }
+    }
+
+    @media (max-width: 600px) {
+      .product-card { width: 90vw; }
+      #cta { padding: 10rem 1.5rem 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CURSOR DOURADO -->
+  <div id="cursor" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       1. NAVEGAÇÃO
+  ============================================================ -->
+  <nav id="nav" role="navigation" aria-label="Navegação principal">
+    <a href="#hero" class="nav-logo" aria-label="Saint Germain Brand — página inicial">
+      Saint Germain
+    </a>
+    <ul class="nav-links">
+      <li><a href="#gallery">Coleção</a></li>
+      <li><a href="#manifesto">Manifesto</a></li>
+      <li><a href="#cta" class="nav-cta">Ver coleção</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       2. HERO
+  ============================================================ -->
+  <section id="hero" aria-label="Lançamento Noir Éternel — Saint Germain Brand">
+    <!--
+      Substitua o src abaixo pela URL real do vídeo:
+      {URL_VIDEO_HERO}
+      O poster garante que uma imagem apareça enquanto o vídeo carrega.
+    -->
+    <video
+      id="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=1600&q=80"
+      aria-hidden="true"
+    >
+      <source src="#placeholder-video.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <p class="hero-pretitle">Saint Germain Brand &middot; 2025</p>
+      <!--
+        O JS constrói o título letra por letra para a animação de reveal.
+        O aria-label na tag garante leitura correta por leitores de tela.
+      -->
+      <h1 class="hero-title" id="hero-title" aria-label="Noir Éternel"></h1>
+      <p class="hero-subtitle">Uma coleção de relógios de alto padrão</p>
+    </div>
+
+    <div class="hero-scroll-indicator" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3. MANIFESTO (SCROLL-PINNED)
+  ============================================================ -->
+  <section id="manifesto" aria-labelledby="manifesto-heading">
+    <div class="manifesto-inner">
+
+      <!-- Imagens que trocam conforme o scroll avança -->
+      <div class="manifesto-left" aria-hidden="true">
+        <img
+          class="manifesto-img active"
+          src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=900&q=80"
+          alt="Relógio Noir Éternel sobre superfície de mármore escuro"
+          loading="lazy"
+        >
+        <img
+          class="manifesto-img"
+          src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=900&q=80"
+          alt="Detalhe do bracelete em aço escovado da coleção Noir Éternel"
+          loading="lazy"
+        >
+        <img
+          class="manifesto-img"
+          src="https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=900&q=80"
+          alt="Relógio Noir Éternel em uso — cena editorial noturna"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="manifesto-right">
+        <p class="manifesto-eyebrow">O Manifesto</p>
+        <h2 class="manifesto-heading" id="manifesto-heading">
+          Há tempos que não se contam apenas em ponteiros.
+        </h2>
+        <div class="manifesto-divider" aria-hidden="true"></div>
+        <p class="manifesto-paragraph">
+          Apresentamos Noir Éternel — uma série de peças que carregam o silêncio de uma escolha bem feita. Cada relógio nasce de uma única convicção: o luxo verdadeiro não grita. Ele permanece.
+        </p>
+        <p class="manifesto-paragraph">
+          Em cada detalhe, em cada material selecionado com rigor, revelamos o Brasil que poucas vezes se mostra — sofisticado, preciso e profundamente contemporâneo. Um Brasil que sabe o que quer e espera com elegância.
+        </p>
+        <p class="manifesto-paragraph">
+          Noir Éternel não é sobre o tempo que passa. É sobre o tempo que você escolhe viver.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       4. GALERIA HORIZONTAL DE PRODUTOS
+  ============================================================ -->
+  <section id="gallery" aria-labelledby="gallery-heading">
+    <h2 id="gallery-heading" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">
+      Produtos da coleção Noir Éternel
+    </h2>
+    <div class="gallery-inner">
+      <div class="gallery-track" id="gallery-track">
+
+        <article class="product-card">
+          <img
+            class="product-card-img"
+            src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=900&q=80"
+            alt="Éternel I — mostrador preto com índices dourados aplicados"
+            loading="lazy"
+          >
+          <div class="product-card-overlay" aria-hidden="true"></div>
+          <div class="product-card-info">
+            <span class="product-tag">Novo</span>
+            <span class="product-name">Éternel I</span>
+            <span class="product-price">R$ 4.890</span>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img
+            class="product-card-img"
+            src="https://images.unsplash.com/photo-1591825729269-caeb344f6df2?w=900&q=80"
+            alt="Éternel II — caixa em aço 316L com acabamento escovado"
+            loading="lazy"
+          >
+          <div class="product-card-overlay" aria-hidden="true"></div>
+          <div class="product-card-info">
+            <span class="product-tag">Novo</span>
+            <span class="product-name">Éternel II</span>
+            <span class="product-price">R$ 5.490</span>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img
+            class="product-card-img"
+            src="https://images.unsplash.com/photo-1518893494013-481c1d8ed3fd?w=900&q=80"
+            alt="Minuit — edição limitada com mostrador em azul meia-noite"
+            loading="lazy"
+          >
+          <div class="product-card-overlay" aria-hidden="true"></div>
+          <div class="product-card-info">
+            <span class="product-tag">Novo</span>
+            <span class="product-name">Minuit</span>
+            <span class="product-price">R$ 6.290</span>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img
+            class="product-card-img"
+            src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=900&q=80"
+            alt="Lumière — mostrador champanhe com bracelete em couro legítimo"
+            loading="lazy"
+          >
+          <div class="product-card-overlay" aria-hidden="true"></div>
+          <div class="product-card-info">
+            <span class="product-tag">Novo</span>
+            <span class="product-name">Lumière</span>
+            <span class="product-price">R$ 4.190</span>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img
+            class="product-card-img"
+            src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=900&q=80"
+            alt="Silence — caixa extra-plana em titânio grau 5 com mostrador minimalista"
+            loading="lazy"
+          >
+          <div class="product-card-overlay" aria-hidden="true"></div>
+          <div class="product-card-info">
+            <span class="product-tag">Novo</span>
+            <span class="product-name">Silence</span>
+            <span class="product-price">R$ 7.890</span>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img
+            class="product-card-img"
+            src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=900&q=80"
+            alt="Reserva — edição especial numerada, peça de colecionador"
+            loading="lazy"
+          >
+          <div class="product-card-overlay" aria-hidden="true"></div>
+          <div class="product-card-info">
+            <span class="product-tag">Novo</span>
+            <span class="product-name">Reserva</span>
+            <span class="product-price">R$ 9.490</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. CLOSEUP COM PARALLAX
+  ============================================================ -->
+  <section id="closeup" aria-labelledby="closeup-title">
+
+    <div class="closeup-layers" aria-hidden="true">
+      <!-- Camada de fundo (move mais lenta) -->
+      <div
+        class="closeup-layer"
+        id="closeup-bg"
+        style="background-image: url('https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=1200&q=80');"
+        role="img"
+        aria-label="Detalhe do mecanismo interno do relógio Silence"
+      ></div>
+      <!-- Camada de sobreposição (move mais rápida) -->
+      <div
+        class="closeup-layer"
+        id="closeup-mid"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=1200&q=80');
+          opacity: 0.35;
+          mix-blend-mode: luminosity;
+        "
+      ></div>
+    </div>
+
+    <div class="closeup-content">
+      <p class="closeup-label">Detalhe técnico</p>
+      <h2 class="closeup-title" id="closeup-title">
+        Movimento suíço automático.<br>25 joias. 72 horas de reserva.
+      </h2>
+      <div class="closeup-divider" aria-hidden="true"></div>
+      <p class="closeup-text">
+        O calibre SA-01 foi desenvolvido em parceria com manufatura europeia e regulado em seis posições. Caixa em aço 316L com acabamento duplo — polido no bisel, escovado nos flancos — impermeável a 10 ATM.
+      </p>
+      <p class="closeup-text">
+        Cada peça Noir Éternel passa por inspeção individual de 48 horas antes de ser embalada à mão no ateliê Saint Germain, em São Paulo.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       6. GRID EDITORIAL
+  ============================================================ -->
+  <section id="editorial" aria-labelledby="editorial-title">
+    <div class="editorial-header">
+      <p class="editorial-eyebrow">A Coleção em Vida</p>
+      <h2 class="editorial-title" id="editorial-title">
+        Veste o silêncio com precisão.
+      </h2>
+    </div>
+
+    <div class="editorial-grid">
+      <figure class="editorial-item">
+        <img
+          src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=900&q=80"
+          alt="Modelo masculino com relógio Noir Éternel em ambiente urbano noturno"
+          loading="lazy"
+        >
+      </figure>
+      <figure class="editorial-item">
+        <img
+          src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800&q=80"
+          alt="Detalhe de punho com relógio Saint Germain sobre mesa em couro natural"
+          loading="lazy"
+        >
+      </figure>
+      <figure class="editorial-item">
+        <img
+          src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&q=80"
+          alt="Embalagem premium da coleção Noir Éternel — caixa em couro negro"
+          loading="lazy"
+        >
+      </figure>
+      <figure class="editorial-item">
+        <img
+          src="https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=1400&q=80"
+          alt="Campanha editorial Noir Éternel — cena contemplativa em luz natural"
+          loading="lazy"
+        >
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       7. CTA FINAL
+  ============================================================ -->
+  <section id="cta" aria-labelledby="cta-title">
+    <p class="cta-eyebrow">Saint Germain Brand &middot; Noir Éternel</p>
+    <h2 class="cta-title" id="cta-title">Disponível agora.</h2>
+    <!--
+      Substitua o href abaixo pela URL real da loja:
+      {URL_NUVEMSHOP_COLECAO}
+    -->
+    <a href="#placeholder-nuvemshop" class="btn-cta">
+      Comprar a coleção
+    </a>
+
+    <footer class="cta-footer">
+      <p class="cta-copyright">
+        &copy; 2025 Saint Germain Brand. Todos os direitos reservados.
+      </p>
+      <ul class="social-links" aria-label="Redes sociais Saint Germain Brand">
+        <li><a href="#" aria-label="Instagram da Saint Germain Brand">Instagram</a></li>
+        <li><a href="#" aria-label="Pinterest da Saint Germain Brand">Pinterest</a></li>
+        <li><a href="#" aria-label="WhatsApp da Saint Germain Brand">WhatsApp</a></li>
+      </ul>
+    </footer>
+  </section>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <!-- Lenis — smooth scroll -->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <!-- GSAP core -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <!-- ScrollTrigger plugin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    /* ============================================================
+       SETUP GLOBAL
+    ============================================================ */
+    gsap.registerPlugin(ScrollTrigger);
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ============================================================
+       LENIS + SCROLLTRIGGER SYNC
+    ============================================================ */
+    const lenis = new Lenis({
+      duration: 1.4,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+
+    /* ============================================================
+       CURSOR DOURADO
+    ============================================================ */
+    (function initCursor() {
+      const cursor = document.getElementById('cursor');
+      if (!cursor || window.innerWidth <= 900) return;
+
+      document.addEventListener('mousemove', (e) => {
+        gsap.to(cursor, {
+          x: e.clientX,
+          y: e.clientY,
+          duration: 0.15,
+          ease: 'power2.out',
+          overwrite: 'auto',
+        });
+      });
+
+      document.querySelectorAll('a, button, .product-card').forEach((el) => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+      });
+    })();
+
+    /* ============================================================
+       NAVEGAÇÃO: transparente → preto
+    ============================================================ */
+    ScrollTrigger.create({
+      start: '100px top',
+      onEnter:     () => document.getElementById('nav').classList.add('scrolled'),
+      onLeaveBack: () => document.getElementById('nav').classList.remove('scrolled'),
+    });
+
+    /* ============================================================
+       HERO: reveal de título letra por letra
+    ============================================================ */
+    (function buildHeroTitle() {
+      const title = document.getElementById('hero-title');
+      const text  = 'Noir Éternel';
+      const chars = [];
+
+      text.split('').forEach((char) => {
+        if (char === ' ') {
+          const sp = document.createElement('span');
+          sp.className = 'word-space';
+          sp.setAttribute('aria-hidden', 'true');
+          title.appendChild(sp);
+        } else {
+          const sp = document.createElement('span');
+          sp.className = 'char';
+          sp.textContent = char;
+          sp.setAttribute('aria-hidden', 'true');
+          title.appendChild(sp);
+          chars.push(sp);
+        }
+      });
+
+      if (reduced) {
+        gsap.set(['.hero-pretitle', chars, '.hero-subtitle', '.hero-scroll-indicator'],
+          { opacity: 1, y: 0 });
+        return;
+      }
+
+      gsap.timeline({ delay: 0.4 })
+        .to('.hero-pretitle', {
+          opacity: 1, duration: 0.8, ease: 'power3.out',
+        })
+        .to(chars, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.038,
+          ease: 'power3.out',
+        }, '-=0.4')
+        .to('.hero-subtitle', {
+          opacity: 0.75, duration: 0.7, ease: 'power3.out',
+        }, '-=0.3')
+        .to('.hero-scroll-indicator', {
+          opacity: 1, duration: 0.6,
+        }, '-=0.2');
+    })();
+
+    /* ============================================================
+       MANIFESTO: pin + troca de imagens + reveal de parágrafos
+    ============================================================ */
+    (function initManifesto() {
+      const images     = document.querySelectorAll('.manifesto-img');
+      const paragraphs = document.querySelectorAll('.manifesto-paragraph');
+      const pinHeight  = window.innerHeight * 2.8;
+
+      if (reduced) {
+        paragraphs.forEach((p) => p.classList.add('visible'));
+        return;
+      }
+
+      ScrollTrigger.create({
+        trigger: '#manifesto',
+        start: 'top top',
+        end: `+=${pinHeight}`,
+        pin: '.manifesto-inner',
+        pinSpacing: true,
+        scrub: false,
+        onUpdate(self) {
+          const p = self.progress;
+
+          // Troca de imagem
+          const idx = Math.min(Math.floor(p * images.length), images.length - 1);
+          images.forEach((img, i) => img.classList.toggle('active', i === idx));
+
+          // Reveal de parágrafos escalonado
+          paragraphs.forEach((para, i) => {
+            const threshold = (i + 1) * (0.55 / paragraphs.length);
+            para.classList.toggle('visible', p >= threshold);
+          });
+        },
+      });
+    })();
+
+    /* ============================================================
+       GALERIA HORIZONTAL
+    ============================================================ */
+    (function initGallery() {
+      const track = document.getElementById('gallery-track');
+      const cards = document.querySelectorAll('.product-card');
+
+      if (reduced) {
+        gsap.set(cards, { opacity: 1, y: 0 });
+        track.style.flexWrap = 'wrap';
+        return;
+      }
+
+      // Reveal inicial dos cards
+      gsap.to(cards, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.12,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '#gallery', start: 'top 75%' },
+      });
+
+      // Scroll horizontal pinado
+      const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+
+      ScrollTrigger.create({
+        trigger: '#gallery',
+        start: 'top top',
+        end: () => `+=${Math.abs(getScrollAmount())}`,
+        pin: true,
+        pinSpacing: true,
+        scrub: 1,
+        animation: gsap.to(track, {
+          x: getScrollAmount,
+          ease: 'none',
+        }),
+        invalidateOnRefresh: true,
+      });
+    })();
+
+    /* ============================================================
+       CLOSEUP: parallax em camadas
+    ============================================================ */
+    (function initCloseup() {
+      if (reduced) return;
+
+      // Camada de fundo — move devagar
+      gsap.to('#closeup-bg', {
+        y: '-18%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#closeup',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+
+      // Camada de sobreposição — move mais rápida
+      gsap.to('#closeup-mid', {
+        y: '-32%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#closeup',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+
+      // Reveal do conteúdo textual
+      gsap.from('.closeup-content > *', {
+        opacity: 0,
+        y: 40,
+        duration: 1.2,
+        stagger: 0.18,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#closeup',
+          start: 'top 68%',
+        },
+      });
+    })();
+
+    /* ============================================================
+       GRID EDITORIAL: clip-path reveal escalonado
+    ============================================================ */
+    (function initEditorial() {
+      if (reduced) {
+        document.querySelectorAll('.editorial-item').forEach((el) => el.classList.add('revealed'));
+        return;
+      }
+
+      // Header reveal
+      gsap.from(['.editorial-eyebrow', '.editorial-title'], {
+        opacity: 0,
+        y: 35,
+        duration: 1.1,
+        stagger: 0.2,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '#editorial', start: 'top 78%' },
+      });
+
+      // Imagens com clip-path escalonado
+      document.querySelectorAll('.editorial-item').forEach((item, i) => {
+        ScrollTrigger.create({
+          trigger: item,
+          start: 'top 82%',
+          onEnter() {
+            setTimeout(() => item.classList.add('revealed'), i * 130);
+          },
+        });
+      });
+    })();
+
+    /* ============================================================
+       CTA FINAL: reveal
+    ============================================================ */
+    (function initCTA() {
+      if (reduced) {
+        gsap.set(['.cta-eyebrow', '.cta-title', '.btn-cta'], { opacity: 1, y: 0 });
+        return;
+      }
+
+      gsap.to(['.cta-eyebrow', '.cta-title', '.btn-cta'], {
+        opacity: 1,
+        y: 0,
+        duration: 1.3,
+        stagger: 0.22,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '#cta', start: 'top 72%' },
+      });
+    })();
+
+    /* ============================================================
+       REVEAL GENÉRICO: elementos com translateY nas seções restantes
+    ============================================================ */
+    if (!reduced) {
+      gsap.utils.toArray('.manifesto-eyebrow, .manifesto-heading, .manifesto-divider').forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 40,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 82%' },
+        });
+      });
+    }
+  </script>
+</body>
+</html>
