@@ -3,722 +3,783 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Noir Éternel — nova coleção de relógios Saint Germain Brand.">
-  <title>Noir Éternel — Saint Germain Brand</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200;1,300&family=Questrial&display=swap" rel="stylesheet">
-
+  <title>Vintage — Saint Germain</title>
+  <meta name="description" content="Coleção Vintage Saint Germain — relógios femininos dourados com pulseiras exclusivas.">
+  <meta property="og:title" content="Vintage — Saint Germain">
+  <meta property="og:image" content="Saint_Germain5063__1_.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Questrial&display=swap" rel="stylesheet">
   <style>
-    /* ─── BASE ──────────────────────────────────────────── */
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    :root {
-      --K:  #0A0A0A;
-      --G:  #C9A961;
-      --GL: #D9C07E;
-      --W:  #F5F1EA;
-      --WD: rgba(245,241,234,.52);
-      --FD: 'Cormorant Garamond', serif;
-      --FB: 'Questrial', sans-serif;
-    }
-    html { scroll-behavior: auto; }
-    body { background:var(--K); color:var(--W); font-family:var(--FB); overflow-x:hidden; cursor:none; }
-    img, video { display:block; }
-    a { text-decoration:none; color:inherit; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    @media (prefers-reduced-motion:reduce) {
-      *, *::before, *::after {
-        animation-duration:.01ms !important;
-        transition-duration:.01ms !important;
-        animation-iteration-count:1 !important;
+    :root {
+      --black: #0a0a0a;
+      --red: #6b0f0f;
+      --white: #ffffff;
+      --gold: #c9a84c;
+      --gold-dim: rgba(201,168,76,0.7);
+      --cream: #f2ede6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Questrial', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 48px;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-brand {
+      font-family: 'Questrial', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      font-family: 'Questrial', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 9px 22px;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .hero-video-wrap {
+      position: absolute;
+      inset: -60px;
+      overflow: hidden;
+    }
+
+    .hero-video-wrap iframe {
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .hero-mobile-img {
+      display: none;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.3) 50%, rgba(10,10,10,0.15) 100%);
+    }
+
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 24px;
+    }
+
+    .hero-logo {
+      width: clamp(140px, 22vw, 280px);
+      margin-bottom: 28px;
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 18px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-label {
+      font-family: 'Questrial', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 36px;
+    }
+
+    .btn-gold {
+      display: inline-block;
+      font-family: 'Questrial', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 14px 38px;
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+
+    .btn-gold:hover { opacity: 0.85; }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      border-top: 1px solid var(--gold-dim);
+      border-bottom: 1px solid var(--gold-dim);
+      overflow: hidden;
+      padding: 14px 0;
+      background: var(--black);
+    }
+
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 30s linear infinite;
+    }
+
+    .marquee-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--gold);
+      padding-right: 60px;
+    }
+
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+    }
+
+    /* ── HEADLINE EDITORIAL ── */
+    .headline-section {
+      background: var(--black);
+      padding: clamp(60px, 10vw, 120px) clamp(24px, 6vw, 80px);
+    }
+
+    .headline-section h2 {
+      font-family: 'Questrial', sans-serif;
+      font-size: clamp(28px, 6vw, 80px);
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── MOSAICO ── */
+    .mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 2px;
+      background: var(--black);
+    }
+
+    .mosaic-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .mosaic-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .mosaic-item:hover img { transform: scale(1.04); }
+
+    .mosaic-tall {
+      grid-row: span 2;
+      min-height: 600px;
+    }
+
+    .mosaic-item:not(.mosaic-tall) {
+      min-height: 300px;
+    }
+
+    /* ── PRODUTOS ── */
+    .products-section {
+      background: #111;
+      padding: clamp(48px, 7vw, 100px) clamp(24px, 5vw, 64px);
+    }
+
+    .products-label {
+      font-family: 'Questrial', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 48px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .product-card {
+      display: block;
+      text-decoration: none;
+      color: var(--white);
+      background: #111;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img-wrap {
+      background: #f8f6f2;
+      padding: 32px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .product-img-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-img-wrap img { transform: scale(1.06); }
+
+    .product-arrow {
+      position: absolute;
+      bottom: 64px;
+      right: 16px;
+      color: var(--gold);
+      font-size: 20px;
+      opacity: 0;
+      transform: translate(4px, -4px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .product-card:hover .product-arrow {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    .product-info {
+      padding: 20px 20px 28px;
+    }
+
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 6px;
+    }
+
+    .product-sub {
+      font-family: 'Questrial', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(242,237,230,0.55);
+    }
+
+    /* ── MANIFESTO ── */
+    .manifesto {
+      background: var(--black);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 600px;
+    }
+
+    .manifesto-text {
+      padding: clamp(60px, 8vw, 100px) clamp(40px, 6vw, 80px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .manifesto-label {
+      font-family: 'Questrial', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .manifesto-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    .manifesto-body {
+      font-family: 'Questrial', sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(242,237,230,0.65);
+    }
+
+    .manifesto-photo {
+      overflow: hidden;
+    }
+
+    .manifesto-photo img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── STRIP ── */
+    .strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--black);
+    }
+
+    .strip-item {
+      overflow: hidden;
+      aspect-ratio: 2/3;
+    }
+
+    .strip-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.7);
+      transition: filter 0.4s ease, transform 0.5s ease;
+    }
+
+    .strip-item:hover img {
+      filter: saturate(1);
+      transform: scale(1.03);
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+      padding: clamp(80px, 12vw, 140px) 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(80px, 18vw, 220px);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(201,168,76,0.07);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .cta-logo {
+      width: clamp(120px, 18vw, 220px);
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-sub {
+      font-family: 'Questrial', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-btn {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--gold-dim);
+      padding: 28px clamp(24px, 5vw, 64px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--black);
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .footer-copy {
+      font-family: 'Questrial', sans-serif;
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+
+      .hero-video-wrap { display: none; }
+      .hero-mobile-img { display: block; }
+
+      .mosaic {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .mosaic-tall {
+        grid-row: span 1;
+        min-height: 260px;
+      }
+
+      .mosaic-item:not(.mosaic-tall) {
+        min-height: 200px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .manifesto {
+        grid-template-columns: 1fr;
+      }
+
+      .manifesto-photo {
+        order: 1;
+      }
+
+      .manifesto-text {
+        order: 2;
+      }
+
+      .strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
       }
     }
 
-    /* ─── PRELOADER ─────────────────────────────────────── */
-    #loader {
-      position:fixed; inset:0; z-index:9000; background:var(--K);
-      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2.5rem;
-    }
-    #loader svg { width:68px; height:68px; overflow:visible; }
-    .l-ring  { stroke-dasharray:219.9; stroke-dashoffset:219.9; }
-    .l-inner { stroke-dasharray:157;   stroke-dashoffset:157;   }
-    .l-mark  { opacity:0; }
-    .l-name  { font-family:var(--FD); font-weight:200; font-size:.72rem; letter-spacing:.6em; text-transform:uppercase; color:var(--W); opacity:0; }
-    .l-bar   { width:0; height:1px; background:var(--G); position:absolute; bottom:0; left:0; }
-
-    /* ─── CURSORS ───────────────────────────────────────── */
-    #c-dot {
-      position:fixed; z-index:8900; pointer-events:none;
-      width:7px; height:7px; border-radius:50%; background:var(--G);
-      transform:translate(-50%,-50%);
-    }
-    #c-ring {
-      position:fixed; z-index:8899; pointer-events:none;
-      width:32px; height:32px; border-radius:50%;
-      border:1px solid rgba(201,169,97,.4);
-      transform:translate(-50%,-50%);
-      transition:width .4s ease,height .4s ease,border-color .4s ease,opacity .3s;
-    }
-    #c-ring.big { width:56px; height:56px; border-color:var(--G); }
-    #c-watch {
-      position:fixed; z-index:8901; pointer-events:none;
-      width:78px; height:78px; border-radius:50%; overflow:hidden;
-      transform:translate(-50%,-50%) scale(0); opacity:0;
-      transition:transform .45s cubic-bezier(.34,1.56,.64,1), opacity .35s;
-    }
-    #c-watch img { width:100%; height:100%; object-fit:cover; }
-    #c-watch.show { transform:translate(-50%,-50%) scale(1); opacity:1; }
-    #c-dot.off,#c-ring.off { opacity:0; }
-
-    /* ─── NAV ───────────────────────────────────────────── */
-    #nav {
-      position:fixed; inset-inline:0; top:0; z-index:1000;
-      padding:2.2rem 4.5rem;
-      display:flex; align-items:center; justify-content:space-between;
-      transition:padding .5s ease, background .6s ease;
-    }
-    #nav.dk { background:rgba(10,10,10,.96); padding:1.1rem 4.5rem; backdrop-filter:blur(18px); }
-    .n-logo { font-family:var(--FD); font-weight:200; font-size:clamp(.78rem,1.3vw,.98rem); letter-spacing:.38em; text-transform:uppercase; }
-    .n-links { display:flex; gap:2.8rem; list-style:none; align-items:center; }
-    .n-links a { font-size:.6rem; letter-spacing:.26em; text-transform:uppercase; opacity:.5; transition:opacity .3s; }
-    .n-links a:hover { opacity:1; }
-    .n-cta { color:var(--G)!important; opacity:1!important; border:1px solid rgba(201,169,97,.55); padding:.55rem 1.5rem; transition:background .3s,color .3s!important; }
-    .n-cta:hover { background:var(--G); color:var(--K)!important; }
-
-    /* ─── WORLD STAGE (pinned container) ────────────────── */
-    /*
-      Single sticky container, 100vh tall.
-      ScrollTrigger pins it and scrubs masterTL.
-      All three worlds are stacked inside via position:absolute.
-    */
-    #stage {
-      width:100%; height:100vh;
-      position:relative; overflow:hidden;
-    }
-    .world {
-      position:absolute; inset:0;
-    }
-
-    /* ─── WORLD 1 · HERO ────────────────────────────────── */
-    #w1 { z-index:1; }
-    #w1-bg {
-      position:absolute; inset:-8%;
-      width:116%; height:116%;
-      object-fit:cover; transform-origin:center; will-change:transform;
-    }
-    #w1-veil {
-      position:absolute; inset:0;
-      background:linear-gradient(175deg, rgba(10,10,10,.22) 0%, rgba(10,10,10,.50) 48%, rgba(10,10,10,.92) 100%);
-    }
-    #w1-body {
-      position:absolute;
-      bottom:9vh; left:5vw;
-      z-index:2; max-width:75vw;
-      will-change:transform,opacity;
-    }
-    .w1-ey {
-      font-size:.58rem; letter-spacing:.55em; text-transform:uppercase;
-      color:var(--G); margin-bottom:2rem; opacity:0;
-    }
-    .w1-h1 {
-      font-family:var(--FD); font-weight:200;
-      font-size:clamp(4.5rem,11vw,11rem);
-      line-height:.92; letter-spacing:.03em; color:var(--W);
-      margin-bottom:2rem;
-    }
-    .w1-h1 .ln { display:block; overflow:hidden; }
-    .w1-h1 .ln span { display:block; transform:translateY(115%); will-change:transform; }
-    .w1-sub { font-size:.6rem; letter-spacing:.35em; text-transform:uppercase; color:var(--WD); opacity:0; }
-    #w1-scroll {
-      position:absolute; bottom:3rem; right:5vw; z-index:2;
-      display:flex; flex-direction:column; align-items:center; gap:.6rem; opacity:0;
-    }
-    #w1-scroll span { font-size:.5rem; letter-spacing:.42em; text-transform:uppercase; color:var(--WD); }
-    .s-tick { width:1px; height:52px; background:linear-gradient(to bottom,var(--G),transparent); animation:tick 2.4s ease-in-out infinite; }
-    @keyframes tick { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(.3);opacity:.2} }
-
-    /* ─── WORLD 2 · STATEMENT ──────────────────────────── */
-    #w2 {
-      z-index:2;
-      clip-path:inset(100% 0 0% 0); /* hidden below — masterTL reveals */
-      background:var(--K);
-      display:flex; align-items:center; justify-content:center;
-    }
-    .w2-inner {
-      width:100%; padding:0 clamp(2rem,9vw,14rem);
-      text-align:center;
-    }
-    #w2-line { width:1px; height:0; background:var(--G); margin:0 auto 4rem; }
-    .w2-quote {
-      font-family:var(--FD); font-weight:200; font-style:italic;
-      font-size:clamp(1.8rem,4.2vw,4.8rem); line-height:1.35; color:var(--W);
-    }
-    .w2-quote .wrd { display:inline-block; opacity:0; transform:translateY(30px); will-change:transform,opacity; }
-    #w2-sig { font-size:.58rem; letter-spacing:.48em; text-transform:uppercase; color:var(--G); margin-top:3.5rem; opacity:0; transform:translateY(16px); }
-
-    /* ─── WORLD 3 · MANIFESTO ──────────────────────────── */
-    #w3 {
-      z-index:3;
-      clip-path:inset(100% 0 0% 0);
-      background:var(--K);
-      display:flex;
-    }
-    .w3-img-col { position:relative; width:50%; height:100vh; flex-shrink:0; overflow:hidden; }
-    .w3-img {
-      position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; opacity:0;
-      transition:opacity .95s ease;
-    }
-    .w3-img.on { opacity:1; }
-    .w3-txt-col {
-      width:50%; padding:6.5rem 5.5rem 6rem 5rem;
-      display:flex; flex-direction:column; justify-content:center; gap:2rem;
-    }
-    .w3-ey { font-size:.58rem; letter-spacing:.44em; text-transform:uppercase; color:var(--G); }
-    .w3-h2 { font-family:var(--FD); font-weight:200; font-size:clamp(1.7rem,2.7vw,3rem); line-height:1.25; color:var(--W); }
-    .w3-bar { width:34px; height:1px; background:rgba(201,169,97,.65); }
-    .w3-p { font-size:clamp(.76rem,.95vw,.9rem); line-height:1.98; color:var(--WD); opacity:0; transform:translateY(22px); }
-
-    /* ─── MARQUEE ───────────────────────────────────────── */
-    #mq {
-      overflow:hidden; height:22vh; display:flex; align-items:center;
-      border-top:1px solid rgba(245,241,234,.045);
-      border-bottom:1px solid rgba(245,241,234,.045);
-      background:var(--K);
-    }
-    .mq-t { display:flex; gap:3rem; white-space:nowrap; will-change:transform; }
-    .mq-t span {
-      font-family:var(--FD); font-weight:200;
-      font-size:clamp(3.5rem,9vw,9rem); line-height:1; letter-spacing:.06em;
-      color:transparent; -webkit-text-stroke:1px rgba(245,241,234,.1);
-      flex-shrink:0; user-select:none;
-    }
-    .mq-t span.lit { -webkit-text-stroke-color:rgba(201,169,97,.3); }
-
-    /* ─── GALLERY ───────────────────────────────────────── */
-    #gallery { background:var(--K); }
-    .gal-vp { height:100vh; overflow:hidden; display:flex; align-items:center; }
-    .gal-t { display:flex; gap:1.5rem; padding:0 6vw; will-change:transform; flex-shrink:0; }
-    .gc {
-      flex-shrink:0; position:relative; overflow:hidden;
-      width:72vw; max-width:660px; height:80vh;
-      opacity:0; transform:translateY(55px); cursor:none;
-    }
-    .gc-img { width:100%; height:100%; object-fit:cover; transform:scale(1.07); transition:transform .9s ease; filter:contrast(1.04) saturate(.9); }
-    .gc:hover .gc-img { transform:scale(1.02); }
-    .gc-veil { position:absolute; inset:0; background:linear-gradient(to top,rgba(10,10,10,.88) 0%,transparent 55%); }
-    .gc-info { position:absolute; bottom:2.5rem; left:2.5rem; right:2.5rem; }
-    .gc-tag { display:inline-block; font-size:.5rem; letter-spacing:.28em; text-transform:uppercase; color:var(--K); background:var(--G); padding:.2rem .85rem; margin-bottom:.9rem; }
-    .gc-name { font-family:var(--FD); font-weight:200; font-size:clamp(1.8rem,3vw,3rem); line-height:1; display:block; margin-bottom:.4rem; }
-    .gc-price { font-size:.7rem; letter-spacing:.2em; color:var(--G); }
-
-    /* ─── FEATURE ───────────────────────────────────────── */
-    #feat { position:relative; height:100vh; overflow:hidden; background:var(--K); display:flex; align-items:center; }
-    .f-layers { position:absolute; left:0; top:-12%; width:54%; height:124%; }
-    .f-lay { position:absolute; inset:0; background-size:cover; background-position:center; will-change:transform; }
-    #fl2 { opacity:.38; mix-blend-mode:overlay; }
-    .f-body { position:relative; z-index:2; margin-left:57%; padding:0 5rem 0 0; max-width:430px; }
-    .f-ey { font-size:.57rem; letter-spacing:.44em; text-transform:uppercase; color:var(--G); margin-bottom:2.2rem; }
-    .f-h2 { font-family:var(--FD); font-weight:200; font-size:clamp(1.8rem,2.8vw,3.2rem); line-height:1.22; color:var(--W); margin-bottom:2rem; }
-    .f-bar { width:34px; height:1px; background:var(--G); margin-bottom:2rem; }
-    .f-p { font-size:clamp(.75rem,.97vw,.88rem); line-height:1.96; color:var(--WD); }
-    .f-p+.f-p { margin-top:1.4rem; }
-
-    /* ─── EDITORIAL ─────────────────────────────────────── */
-    #ed { padding:9rem 5vw; background:var(--K); }
-    .ed-hd { text-align:center; margin-bottom:5.5rem; }
-    .ed-ey { font-size:.57rem; letter-spacing:.46em; text-transform:uppercase; color:var(--G); margin-bottom:1.2rem; }
-    .ed-t { font-family:var(--FD); font-weight:200; font-style:italic; font-size:clamp(2rem,5vw,5.5rem); color:var(--W); }
-    .ed-g { display:grid; grid-template-columns:1.65fr 1fr; grid-template-rows:1fr 1fr; gap:1.2rem; }
-    .ed-i { overflow:hidden; clip-path:inset(100% 0 0 0); }
-    .ed-i.rv { clip-path:inset(0% 0 0 0); transition:clip-path 1.5s cubic-bezier(.77,0,.175,1); }
-    .ed-i img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .9s ease; filter:contrast(1.04) saturate(.88); }
-    .ed-i:hover img { transform:scale(1.03); }
-    .ed-i:nth-child(1) { grid-row:1/3; min-height:620px; }
-    .ed-i:nth-child(2),.ed-i:nth-child(3) { min-height:295px; }
-    .ed-i:nth-child(4) { grid-column:1/3; min-height:360px; }
-
-    /* ─── CTA ────────────────────────────────────────────── */
-    #cta { padding:14rem 2rem 7rem; text-align:center; background:var(--K); position:relative; }
-    #cta::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:1px; height:80px; background:linear-gradient(to bottom,transparent,var(--G)); }
-    .c-ey  { font-size:.57rem; letter-spacing:.46em; text-transform:uppercase; color:var(--G); margin-bottom:2.5rem; opacity:0; transform:translateY(28px); }
-    .c-h   { font-family:var(--FD); font-weight:200; font-size:clamp(3.5rem,10vw,10rem); line-height:.9; color:var(--W); margin-bottom:4rem; opacity:0; transform:translateY(60px); }
-    .c-btn { display:inline-block; font-size:.67rem; letter-spacing:.3em; text-transform:uppercase; color:var(--K); background:var(--G); padding:1.2rem 3.6rem; opacity:0; transform:translateY(30px); transition:transform .45s ease,background .35s ease; }
-    .c-btn:hover { transform:scale(1.03)!important; background:var(--GL); }
-    .c-ft { margin-top:9rem; padding-top:2.5rem; border-top:1px solid rgba(245,241,234,.07); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; }
-    .c-cp { font-size:.57rem; letter-spacing:.14em; color:rgba(245,241,234,.22); }
-    .c-sc { display:flex; gap:2rem; list-style:none; }
-    .c-sc a { font-size:.57rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(245,241,234,.32); transition:color .3s; }
-    .c-sc a:hover { color:var(--G); }
-
-    /* ─── RESPONSIVE ─────────────────────────────────────── */
-    @media (max-width:900px) {
-      #nav { padding:1.4rem 2rem; }
-      #nav.dk { padding:1rem 2rem; }
-      .n-links li:not(:last-child) { display:none; }
-      #w1-body { left:1.5rem; max-width:90vw; }
-      #w3 { flex-direction:column; }
-      .w3-img-col { width:100%; height:45vh; }
-      .w3-txt-col { width:100%; padding:3rem 1.5rem; }
-      #feat { height:auto; flex-direction:column; }
-      .f-layers { position:relative; width:100%; height:48vh; top:0; }
-      .f-body { margin-left:0; padding:3rem 1.5rem; max-width:100%; }
-      .ed-g { grid-template-columns:1fr; }
-      .ed-i:nth-child(1) { grid-row:auto; min-height:400px; }
-      .ed-i:nth-child(4) { grid-column:auto; }
-      .c-ft { flex-direction:column; text-align:center; }
-      #c-dot,#c-ring,#c-watch { display:none; }
-      body { cursor:auto; }
-    }
-    @media (max-width:580px) {
-      .gc { width:90vw; }
-      .w1-h1 { font-size:clamp(3.5rem,14vw,6rem); }
+    @media (max-width: 480px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- PRELOADER ─────────────────────────────────────────── -->
-  <div id="loader" role="status" aria-label="Carregando">
-    <svg viewBox="0 0 70 70" fill="none" aria-hidden="true">
-      <circle cx="35" cy="35" r="34" stroke="#C9A961" stroke-width=".75" class="l-ring"/>
-      <circle cx="35" cy="35" r="25" stroke="rgba(201,169,97,.35)" stroke-width=".5" class="l-inner"/>
-      <text x="35" y="41" text-anchor="middle" font-family="Cormorant Garamond, serif"
-        font-size="14" fill="#C9A961" font-weight="200" letter-spacing="2" class="l-mark">SG</text>
-    </svg>
-    <p class="l-name">Saint Germain Brand</p>
-    <div class="l-bar"></div>
-  </div>
-
-  <!-- CURSORS ───────────────────────────────────────────── -->
-  <div id="c-dot"   aria-hidden="true"></div>
-  <div id="c-ring"  aria-hidden="true"></div>
-  <div id="c-watch" aria-hidden="true">
-    <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=200&q=80" alt="">
-  </div>
-
-  <!-- NAV ───────────────────────────────────────────────── -->
-  <nav id="nav" aria-label="Navegação principal">
-    <a href="#" class="n-logo" aria-label="Saint Germain Brand">Saint Germain</a>
-    <ul class="n-links">
-      <li><a href="#gallery">Coleção</a></li>
-      <li><a href="#mq">Manifesto</a></li>
-      <li><a href="#cta" class="n-cta">Ver coleção</a></li>
-    </ul>
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-brand" href="#">Saint Germain</a>
+    <a class="nav-cta" href="https://www.saintgermainbrand.com.br/colecoes/vintage" target="_blank">Ver Coleção</a>
   </nav>
 
-  <!-- ════════════════════════════════════════════════════
-       WORLD STAGE
-       Single pinned container. ScrollTrigger scrubs masterTL.
-       All three worlds are absolute inside.
-  ════════════════════════════════════════════════════════ -->
-  <div id="stage">
-
-    <!-- WORLD 1 · HERO -->
-    <div class="world" id="w1" aria-label="Lançamento Noir Éternel">
-      <!-- {URL_VIDEO_HERO} — trocar src abaixo pelo vídeo real -->
-      <video id="w1-bg" autoplay muted loop playsinline
-        poster="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=1600&q=80"
-        aria-hidden="true">
-        <source src="#placeholder.mp4" type="video/mp4">
-      </video>
-      <div id="w1-veil" aria-hidden="true"></div>
-      <div id="w1-body">
-        <p class="w1-ey">Saint Germain Brand &middot; 2025</p>
-        <h1 class="w1-h1" aria-label="Noir Éternel">
-          <span class="ln"><span>Noir</span></span>
-          <span class="ln"><span>Éternel</span></span>
-        </h1>
-        <p class="w1-sub">Uma coleção de relógios de alto padrão</p>
-      </div>
-      <div id="w1-scroll" aria-hidden="true">
-        <span>Scroll</span>
-        <div class="s-tick"></div>
-      </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-video-wrap" id="heroVideoWrap">
+      <iframe
+        src="https://www.youtube.com/embed/_uTAxo1fF60?autoplay=1&mute=1&loop=1&playlist=_uTAxo1fF60&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        allowfullscreen
+        title="Saint Germain Vintage Campaign">
+      </iframe>
     </div>
-
-    <!-- WORLD 2 · STATEMENT (sobe cobrindo o hero) -->
-    <div class="world" id="w2" aria-label="Manifesto">
-      <div class="w2-inner">
-        <div id="w2-line" aria-hidden="true"></div>
-        <blockquote class="w2-quote">
-          <span class="wrd">Há</span> <span class="wrd">tempos</span>
-          <span class="wrd">que</span> <span class="wrd">não</span>
-          <span class="wrd">se</span> <span class="wrd">contam</span>
-          <span class="wrd">apenas</span> <span class="wrd">em</span>
-          <span class="wrd">ponteiros.</span><br><br>
-          <span class="wrd">Cada</span> <span class="wrd">peça</span>
-          <span class="wrd">carrega</span> <span class="wrd">o</span>
-          <span class="wrd">silêncio</span> <span class="wrd">de</span>
-          <span class="wrd">uma</span> <span class="wrd">escolha</span>
-          <span class="wrd">bem</span> <span class="wrd">feita.</span>
-        </blockquote>
-        <p id="w2-sig">— Saint Germain Brand</p>
-      </div>
+    <img class="hero-mobile-img" src="Saint_Germain5063__1_.jpeg" alt="Saint Germain Vintage" id="heroMobileImg">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img class="hero-logo" src="vintage-logo.png" alt="Vintage — Saint Germain">
+      <p class="hero-tagline">Feito para durar além do tempo.</p>
+      <p class="hero-label">Relógios Femininos · Coleção Permanente</p>
+      <a class="btn-gold" href="https://www.saintgermainbrand.com.br/colecoes/vintage" target="_blank">Explorar</a>
     </div>
+  </section>
 
-    <!-- WORLD 3 · MANIFESTO (sobe cobrindo o statement) -->
-    <div class="world" id="w3" aria-labelledby="w3-h2">
-      <div class="w3-img-col" aria-hidden="true">
-        <img class="w3-img on"
-          src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=900&q=80"
-          alt="" loading="lazy">
-        <img class="w3-img"
-          src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=900&q=80"
-          alt="" loading="lazy">
-        <img class="w3-img"
-          src="https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=900&q=80"
-          alt="" loading="lazy">
-      </div>
-      <div class="w3-txt-col">
-        <p class="w3-ey">O Manifesto</p>
-        <h2 class="w3-h2" id="w3-h2">Há tempos que não se contam apenas em ponteiros.</h2>
-        <div class="w3-bar" aria-hidden="true"></div>
-        <p class="w3-p">Apresentamos Noir Éternel — uma série de peças que carregam o silêncio de uma escolha bem feita. Cada relógio nasce de uma única convicção: o luxo verdadeiro não grita. Ele permanece.</p>
-        <p class="w3-p">Em cada detalhe, em cada material selecionado com rigor, revelamos o Brasil que poucas vezes se mostra — sofisticado, preciso e profundamente contemporâneo.</p>
-        <p class="w3-p">Noir Éternel não é sobre o tempo que passa. É sobre o tempo que você escolhe viver.</p>
-      </div>
-    </div>
-
-  </div><!-- /#stage -->
-
-  <!-- ═══════════════════════════════════════════════════════
-       SEÇÕES PÓS-WORLDS (fluxo normal, ScrollTrigger padrão)
-  ═══════════════════════════════════════════════════════ -->
-
-  <!-- Marquee -->
-  <div id="mq" aria-hidden="true">
-    <div class="mq-t" id="mq-t">
-      <span>Noir Éternel</span><span class="lit">&nbsp;·&nbsp;</span>
-      <span>Saint Germain</span><span class="lit">&nbsp;·&nbsp;</span>
-      <span>Noir Éternel</span><span class="lit">&nbsp;·&nbsp;</span>
-      <span>Saint Germain</span><span class="lit">&nbsp;·&nbsp;</span>
-      <span>Noir Éternel</span><span class="lit">&nbsp;·&nbsp;</span>
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-text">Elegância atemporal · Caixa dourada · Pulseiras exclusivas · Relógio feminino · Saint Germain · Feito para durar · </span>
+      <span class="marquee-text">Elegância atemporal · Caixa dourada · Pulseiras exclusivas · Relógio feminino · Saint Germain · Feito para durar · </span>
+      <span class="marquee-text">Elegância atemporal · Caixa dourada · Pulseiras exclusivas · Relógio feminino · Saint Germain · Feito para durar · </span>
+      <span class="marquee-text">Elegância atemporal · Caixa dourada · Pulseiras exclusivas · Relógio feminino · Saint Germain · Feito para durar · </span>
     </div>
   </div>
 
-  <!-- Galeria horizontal -->
-  <section id="gallery" aria-labelledby="gal-h">
-    <h2 id="gal-h" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Produtos Noir Éternel</h2>
-    <div class="gal-vp">
-      <div class="gal-t" id="gal-t">
+  <!-- HEADLINE EDITORIAL -->
+  <section class="headline-section">
+    <h2 class="reveal">Seis modelos. Uma coleção que não segue tendência — ela define estilo.</h2>
+  </section>
 
-        <article class="gc">
-          <img class="gc-img" src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=900&q=80" alt="Éternel I — mostrador preto com índices dourados" loading="lazy">
-          <div class="gc-veil" aria-hidden="true"></div>
-          <div class="gc-info"><span class="gc-tag">Novo</span><span class="gc-name">Éternel I</span><span class="gc-price">R$ 4.890</span></div>
-        </article>
-
-        <article class="gc">
-          <img class="gc-img" src="https://images.unsplash.com/photo-1591825729269-caeb344f6df2?w=900&q=80" alt="Éternel II — aço escovado" loading="lazy">
-          <div class="gc-veil" aria-hidden="true"></div>
-          <div class="gc-info"><span class="gc-tag">Novo</span><span class="gc-name">Éternel II</span><span class="gc-price">R$ 5.490</span></div>
-        </article>
-
-        <article class="gc">
-          <img class="gc-img" src="https://images.unsplash.com/photo-1518893494013-481c1d8ed3fd?w=900&q=80" alt="Minuit — azul meia-noite" loading="lazy">
-          <div class="gc-veil" aria-hidden="true"></div>
-          <div class="gc-info"><span class="gc-tag">Novo</span><span class="gc-name">Minuit</span><span class="gc-price">R$ 6.290</span></div>
-        </article>
-
-        <article class="gc">
-          <img class="gc-img" src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=900&q=80" alt="Lumière — champanhe e couro" loading="lazy">
-          <div class="gc-veil" aria-hidden="true"></div>
-          <div class="gc-info"><span class="gc-tag">Novo</span><span class="gc-name">Lumière</span><span class="gc-price">R$ 4.190</span></div>
-        </article>
-
-        <article class="gc">
-          <img class="gc-img" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=900&q=80" alt="Silence — extra-plano titânio" loading="lazy">
-          <div class="gc-veil" aria-hidden="true"></div>
-          <div class="gc-info"><span class="gc-tag">Novo</span><span class="gc-name">Silence</span><span class="gc-price">R$ 7.890</span></div>
-        </article>
-
-        <article class="gc">
-          <img class="gc-img" src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=900&q=80" alt="Reserva — edição numerada" loading="lazy">
-          <div class="gc-veil" aria-hidden="true"></div>
-          <div class="gc-info"><span class="gc-tag">Novo</span><span class="gc-name">Reserva</span><span class="gc-price">R$ 9.490</span></div>
-        </article>
-
-      </div>
+  <!-- MOSAICO -->
+  <section class="mosaic">
+    <div class="mosaic-item mosaic-tall">
+      <img src="Saint_Germain5063__1_.jpeg" alt="Saint Germain Campaign">
+    </div>
+    <div class="mosaic-item">
+      <img src="Saint_Germain5124.jpeg" alt="Saint Germain Campaign">
+    </div>
+    <div class="mosaic-item">
+      <img src="Saint_Germain5155.jpeg" alt="Saint Germain Campaign">
+    </div>
+    <div class="mosaic-item">
+      <img src="Saint_Germain5135.jpeg" alt="Saint Germain Campaign">
+    </div>
+    <div class="mosaic-item">
+      <img src="Saint_Germain5020.jpeg" alt="Saint Germain Campaign">
     </div>
   </section>
 
-  <!-- Feature parallax -->
-  <section id="feat" aria-labelledby="f-h">
-    <div class="f-layers" aria-hidden="true">
-      <div class="f-lay" id="fl1" style="background-image:url('https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=1200&q=80')"></div>
-      <div class="f-lay" id="fl2" style="background-image:url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=1200&q=80')"></div>
-    </div>
-    <div class="f-body">
-      <p class="f-ey">Detalhe técnico</p>
-      <h2 class="f-h2" id="f-h">Movimento suíço automático.<br>25 joias.<br>72h de reserva.</h2>
-      <div class="f-bar" aria-hidden="true"></div>
-      <p class="f-p">Calibre SA-01 regulado em seis posições, caixa 316L com acabamento duplo — polido no bisel, escovado nos flancos — impermeável a 10 ATM.</p>
-      <p class="f-p">Cada peça passa por 48h de inspeção individual antes de ser embalada à mão no ateliê Saint Germain, em São Paulo.</p>
+  <!-- PRODUTOS -->
+  <section class="products-section">
+    <p class="products-label reveal">Coleção Vintage — Todos os Modelos</p>
+    <div class="products-grid" id="productsGrid">
+
+      <a class="product-card reveal" href="https://www.saintgermainbrand.com.br/produtos/relogio-feminino-redondo-vintage-abbey-dourado-caixa-dourada-e-bisel-removivel/" target="_blank">
+        <div class="product-img-wrap">
+          <img src="068.jpg" alt="Abbey">
+        </div>
+        <span class="product-arrow">→</span>
+        <div class="product-info">
+          <p class="product-name">Abbey</p>
+          <p class="product-sub">Bisel removível · Elo dourado</p>
+        </div>
+      </a>
+
+      <a class="product-card reveal" href="https://www.saintgermainbrand.com.br/produtos/relogio-feminino-redondo-vintage-amber-pulseira-croco-marrom-e-caixa-dourada-com-numeros-romanos/" target="_blank">
+        <div class="product-img-wrap">
+          <img src="Relo_gio-Feminino-Redondo-Vintage-Abbey-Dourado-Caixa-Dourada-Bisel-Removi_vel.jpg" alt="Amber">
+        </div>
+        <span class="product-arrow">→</span>
+        <div class="product-info">
+          <p class="product-name">Amber</p>
+          <p class="product-sub">Pulseira croco · Algarismos romanos</p>
+        </div>
+      </a>
+
+      <a class="product-card reveal" href="https://www.saintgermainbrand.com.br/produtos/relogio-feminino-redondo-vintage-lana-dourado/" target="_blank">
+        <div class="product-img-wrap">
+          <img src="053.jpg" alt="Lana">
+        </div>
+        <span class="product-arrow">→</span>
+        <div class="product-info">
+          <p class="product-name">Lana</p>
+          <p class="product-sub">Elo torcido · Caixa dourada</p>
+        </div>
+      </a>
+
+      <a class="product-card reveal" href="https://www.saintgermainbrand.com.br/produtos/relogio-feminino-redondo-bracelete-gala-vintage-dourado/" target="_blank">
+        <div class="product-img-wrap">
+          <img src="057.jpg" alt="Gala">
+        </div>
+        <span class="product-arrow">→</span>
+        <div class="product-info">
+          <p class="product-name">Gala</p>
+          <p class="product-sub">Bracelete largo · Mostrador árabe</p>
+        </div>
+      </a>
+
+      <a class="product-card reveal" href="https://www.saintgermainbrand.com.br/produtos/relogio-feminino-redondo-vintage-opalini-dourado-com-fundo-perolado/" target="_blank">
+        <div class="product-img-wrap">
+          <img src="055.jpg" alt="Opalini">
+        </div>
+        <span class="product-arrow">→</span>
+        <div class="product-info">
+          <p class="product-name">Opalini</p>
+          <p class="product-sub">Fundo perolado · Bracelete oval</p>
+        </div>
+      </a>
+
+      <a class="product-card reveal" href="https://www.saintgermainbrand.com.br/produtos/relogio-feminino-pequeno-oval-mini-dourado/" target="_blank">
+        <div class="product-img-wrap">
+          <img src="072.jpg" alt="Oval Mini">
+        </div>
+        <span class="product-arrow">→</span>
+        <div class="product-info">
+          <p class="product-name">Oval Mini</p>
+          <p class="product-sub">Caixa oval · Bracelete pantera</p>
+        </div>
+      </a>
+
     </div>
   </section>
 
-  <!-- Editorial -->
-  <section id="ed" aria-labelledby="ed-h">
-    <div class="ed-hd">
-      <p class="ed-ey">A Coleção em Vida</p>
-      <h2 class="ed-t" id="ed-h">Veste o silêncio com precisão.</h2>
+  <!-- MANIFESTO -->
+  <section class="manifesto">
+    <div class="manifesto-text reveal">
+      <p class="manifesto-label">Saint Germain</p>
+      <h3 class="manifesto-title">"O tempo que<br>você carrega<br>no pulso."</h3>
+      <p class="manifesto-body">
+        A coleção Vintage nasce da crença de que um acessório<br>
+        não precisa gritar para ser notado. Dourado sem exagero.<br>
+        Detalhes que aparecem de perto. Pulseiras que parecem<br>
+        joias — porque são.
+      </p>
     </div>
-    <div class="ed-g">
-      <figure class="ed-i"><img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=900&q=80" alt="Modelo com Noir Éternel em ambiente noturno" loading="lazy"></figure>
-      <figure class="ed-i"><img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800&q=80" alt="Detalhe de punho com relógio Saint Germain" loading="lazy"></figure>
-      <figure class="ed-i"><img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&q=80" alt="Embalagem premium Noir Éternel" loading="lazy"></figure>
-      <figure class="ed-i"><img src="https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=1400&q=80" alt="Campanha editorial Noir Éternel" loading="lazy"></figure>
+    <div class="manifesto-photo">
+      <img src="Saint_Germain5042.jpeg" alt="Saint Germain Vintage">
     </div>
   </section>
 
-  <!-- CTA -->
-  <section id="cta" aria-labelledby="c-hh">
-    <p class="c-ey">Saint Germain Brand &middot; Noir Éternel</p>
-    <h2 class="c-h" id="c-hh">Disponível<br>agora.</h2>
-    <!-- Substitua href por {URL_NUVEMSHOP_COLECAO} -->
-    <a href="#placeholder-loja" class="c-btn">Comprar a coleção</a>
-    <footer class="c-ft">
-      <p class="c-cp">&copy; 2025 Saint Germain Brand. Todos os direitos reservados.</p>
-      <ul class="c-sc" aria-label="Redes sociais">
-        <li><a href="#" aria-label="Instagram">Instagram</a></li>
-        <li><a href="#" aria-label="Pinterest">Pinterest</a></li>
-        <li><a href="#" aria-label="WhatsApp">WhatsApp</a></li>
-      </ul>
-    </footer>
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="strip-item">
+      <img src="Saint_Germain5063__1_.jpeg" alt="Campaign">
+    </div>
+    <div class="strip-item">
+      <img src="Copy_of_Saint_German_24-06_798.jpg" alt="Campaign">
+    </div>
+    <div class="strip-item">
+      <img src="Copy_of_Saint_German_24-06_818-Recuperado.jpg" alt="Campaign">
+    </div>
+    <div class="strip-item">
+      <img src="Saint_Germain5028.jpeg" alt="Campaign">
+    </div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <span class="cta-bg-text" aria-hidden="true">VINTAGE</span>
+    <img class="cta-logo" src="vintage-logo.png" alt="Vintage">
+    <h2 class="cta-title reveal">Escolha o seu.</h2>
+    <p class="cta-sub reveal">Seis modelos · Entrega para todo o Brasil</p>
+    <a class="btn-gold cta-btn reveal" href="https://www.saintgermainbrand.com.br/colecoes/vintage" target="_blank">Ver Coleção Completa</a>
   </section>
 
-  <!-- SCRIPTS ────────────────────────────────────────────── -->
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">Saint Germain Brand</span>
+    <span class="footer-copy">© 2025 — Todos os direitos reservados</span>
+  </footer>
 
   <script>
-  (() => {
-    'use strict';
-    gsap.registerPlugin(ScrollTrigger);
-    const R = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
 
-    /* ── Lenis ─────────────────────────────────────────── */
-    const lenis = new Lenis({
-      duration: 1.9,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(t => lenis.raf(t * 1000));
-    gsap.ticker.lagSmoothing(0);
-
-    /* ── Cursors ────────────────────────────────────────── */
-    const cDot   = document.getElementById('c-dot');
-    const cRing  = document.getElementById('c-ring');
-    const cWatch = document.getElementById('c-watch');
-
-    if (cDot && window.innerWidth > 900) {
-      document.addEventListener('mousemove', e => {
-        gsap.to([cDot, cRing, cWatch], { x: e.clientX, y: e.clientY, duration:.13, ease:'power2.out', overwrite:'auto' });
-      });
-      document.querySelectorAll('.gc').forEach(c => {
-        c.addEventListener('mouseenter', () => { cWatch.classList.add('show'); cDot.classList.add('off'); cRing.classList.add('off'); });
-        c.addEventListener('mouseleave', () => { cWatch.classList.remove('show'); cDot.classList.remove('off'); cRing.classList.remove('off'); });
-      });
-      document.querySelectorAll('a, button, .c-btn').forEach(el => {
-        el.addEventListener('mouseenter', () => cRing.classList.add('big'));
-        el.addEventListener('mouseleave', () => cRing.classList.remove('big'));
-      });
+    // Mobile hero fallback
+    if (window.innerWidth < 768) {
+      const wrap = document.getElementById('heroVideoWrap');
+      const img  = document.getElementById('heroMobileImg');
+      if (wrap) wrap.style.display = 'none';
+      if (img)  img.style.display  = 'block';
     }
 
-    /* ── Nav ────────────────────────────────────────────── */
-    ScrollTrigger.create({
-      start: '80px top',
-      onEnter:     () => document.getElementById('nav').classList.add('dk'),
-      onLeaveBack: () => document.getElementById('nav').classList.remove('dk'),
+    // Scroll reveal with stagger for product cards
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer  = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el    = entry.target;
+        const delay = el.dataset.delay || 0;
+        setTimeout(() => el.classList.add('visible'), +delay);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.12 });
+
+    // Add stagger delay to product cards
+    document.querySelectorAll('#productsGrid .product-card').forEach((card, i) => {
+      card.dataset.delay = i * 80;
     });
 
-    /* ── Preloader → then boot ──────────────────────────── */
-    const loader = document.getElementById('loader');
-
-    if (R) { loader.style.display = 'none'; boot(); }
-    else {
-      gsap.timeline({ onComplete: boot })
-        .to('.l-ring',  { strokeDashoffset: 0, duration: 1.1, ease:'power2.inOut' })
-        .to('.l-inner', { strokeDashoffset: 0, duration: .9,  ease:'power2.inOut' }, '-=.7')
-        .to('.l-mark',  { opacity: 1, duration: .5 }, '-=.3')
-        .to('.l-name',  { opacity: 1, duration: .6 }, '-=.2')
-        .to('.l-bar',   { width:'100%', duration:.7, ease:'power2.inOut' }, '-=.2')
-        .to(loader,     { opacity: 0, duration:.7, ease:'power2.inOut', delay:.25 })
-        .set(loader,    { display:'none' });
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      revealEls.forEach(el => observer.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('visible'));
     }
-
-    /* ════════════════════════════════════════════════════
-       BOOT — runs after preloader finishes
-    ════════════════════════════════════════════════════ */
-    function boot() {
-      if (R) { skipAnimations(); return; }
-      initHeroIntro();
-      initWorldsMasterTimeline();
-      initMarquee();
-      initGallery();
-      initFeature();
-      initEditorial();
-      initCTA();
-    }
-
-    /* ── Hero intro (plays once, not scrubbed) ────────── */
-    function initHeroIntro() {
-      const lines = document.querySelectorAll('.w1-h1 .ln span');
-      gsap.timeline({ delay: .3 })
-        .to('.w1-ey',   { opacity:1, duration:.9, ease:'power3.out' })
-        .to(lines,      { y:'0%', duration:1.5, stagger:.2, ease:'expo.out' }, '-=.6')
-        .to('.w1-sub',  { opacity:1, duration:.8, ease:'power3.out' }, '-=.5')
-        .to('#w1-scroll',{ opacity:1, duration:.6 }, '-=.3');
-    }
-
-    /* ════════════════════════════════════════════════════
-       MASTER TIMELINE — scrubbed to scroll via pin on #stage
-
-       Architecture:
-         • #stage is pinned by ScrollTrigger (stays at top:0)
-         • masterTL drives ALL world transitions + in-world animations
-         • Durations are proportional: 1 unit ≈ 1 viewport-height of scroll
-
-       World budgets (in timeline units):
-         W1 hold:    3.5 units → hero stays visible
-         Trans 1→2:  1.2 units → W2 rises from below
-         W2 hold:    3.5 units → words appear
-         Trans 2→3:  1.2 units → W3 rises from below
-         W3 hold:    3.5 units → manifesto content appears
-         Total:      ≈ 12.9 units × H px = scroll budget
-    ════════════════════════════════════════════════════ */
-    function initWorldsMasterTimeline() {
-      const H = window.innerHeight;
-
-      const HOLD  = 3.5;
-      const TRANS = 1.2;
-      const totalUnits = HOLD * 3 + TRANS * 2;  // 3 worlds, 2 transitions
-      const scrollBudget = totalUnits * H;
-
-      /* ── Build timeline ─────────────────────────────── */
-      const tl = gsap.timeline({ paused: true });
-
-      /* ·· W1 HOLD: video slow zoom, hero body drifts out ·· */
-      tl.to('#w1-bg',   { scale:1.15, ease:'none', duration: HOLD })
-        .to('#w1-body', { y:-80, opacity:0, ease:'power2.in', duration:.9 }, `-=${HOLD * .35}`)
-        .to('#w1-scroll',{ opacity:0, ease:'none', duration:.5 }, '<');
-
-      /* ·· TRANSITION 1→2: W2 slides up from below ·· */
-      tl.to('#w2', { clipPath:'inset(0% 0 0% 0)', ease:'power2.inOut', duration: TRANS });
-
-      /* ·· W2 HOLD: line grows, words appear one by one ·· */
-      const words = document.querySelectorAll('.w2-quote .wrd');
-      tl.to('#w2-line', { height:58, ease:'power2.out', duration:.55 })
-        .to(words, {
-          opacity:1, y:0,
-          stagger: (HOLD * .55) / words.length,
-          duration:.001,            /* instant per word — stagger drives the timing */
-          ease:'none',
-        }, `-=.3`)
-        .to('#w2-sig', { opacity:1, y:0, ease:'power3.out', duration:.6 }, `-=${(HOLD * .55) / words.length * 3}`)
-        /* hold at the end of W2 before next transition */
-        .to({}, { duration: HOLD * .3 });
-
-      /* ·· TRANSITION 2→3: W3 slides up ·· */
-      tl.to('#w3', { clipPath:'inset(0% 0 0% 0)', ease:'power2.inOut', duration: TRANS });
-
-      /* ·· W3 HOLD: paragraphs appear + images swap ·· */
-      const imgs  = document.querySelectorAll('.w3-img');
-      const paras = document.querySelectorAll('.w3-p');
-      const paraSpread = HOLD * .22;
-
-      tl.to(paras[0], { opacity:1, y:0, ease:'power3.out', duration:.7 })
-        /* swap image after first para */
-        .to(imgs[1], { opacity:1, ease:'none', duration:.8 }, `+=${paraSpread}`)
-        .to(imgs[0], { opacity:0, ease:'none', duration:.8 }, '<')
-        .to(paras[1], { opacity:1, y:0, ease:'power3.out', duration:.7 })
-        /* swap image after second para */
-        .to(imgs[2], { opacity:1, ease:'none', duration:.8 }, `+=${paraSpread}`)
-        .to(imgs[1], { opacity:0, ease:'none', duration:.8 }, '<')
-        .to(paras[2], { opacity:1, y:0, ease:'power3.out', duration:.7 })
-        /* hold before releasing */
-        .to({}, { duration: HOLD * .2 });
-
-      /* ── Pin #stage and attach tl ───────────────────── */
-      ScrollTrigger.create({
-        trigger:    '#stage',
-        start:      'top top',
-        end:        `+=${scrollBudget}`,
-        pin:        true,
-        pinSpacing: true,
-        scrub:      3,          /* 3 = very smooth, cinematic lag */
-        animation:  tl,
-      });
-    }
-
-    /* ── Marquee: scroll-driven drift ─────────────────── */
-    function initMarquee() {
-      const t = document.getElementById('mq-t');
-      t.innerHTML += t.innerHTML;
-      gsap.to(t, {
-        x: () => -(t.scrollWidth / 2),
-        ease: 'none',
-        scrollTrigger: { trigger:'#mq', start:'top bottom', end:'bottom top', scrub:.5 },
-      });
-    }
-
-    /* ── Gallery: horizontal pin ───────────────────────── */
-    function initGallery() {
-      const track = document.getElementById('gal-t');
-      const cards = document.querySelectorAll('.gc');
-
-      gsap.to(cards, {
-        opacity:1, y:0, duration:1.1, stagger:.12, ease:'power3.out',
-        scrollTrigger:{ trigger:'#gallery', start:'top 78%' },
-      });
-
-      const getX = () => -(track.scrollWidth - window.innerWidth);
-      ScrollTrigger.create({
-        trigger: '#gallery', start:'top top',
-        end: () => `+=${Math.abs(getX())}`,
-        pin:true, pinSpacing:true, scrub:1.3,
-        animation: gsap.to(track, { x: getX, ease:'none' }),
-        invalidateOnRefresh:true,
-      });
-    }
-
-    /* ── Feature parallax ──────────────────────────────── */
-    function initFeature() {
-      gsap.to('#fl1', { y:'-22%', ease:'none', scrollTrigger:{ trigger:'#feat', start:'top bottom', end:'bottom top', scrub:true } });
-      gsap.to('#fl2', { y:'-40%', ease:'none', scrollTrigger:{ trigger:'#feat', start:'top bottom', end:'bottom top', scrub:true } });
-      gsap.from('.f-body > *', { opacity:0, y:50, duration:1.4, stagger:.2, ease:'power3.out', scrollTrigger:{ trigger:'#feat', start:'top 68%' } });
-    }
-
-    /* ── Editorial clip-path wipe ──────────────────────── */
-    function initEditorial() {
-      gsap.from(['.ed-ey','.ed-t'], { opacity:0, y:40, duration:1.2, stagger:.2, ease:'power3.out', scrollTrigger:{ trigger:'#ed', start:'top 78%' } });
-      document.querySelectorAll('.ed-i').forEach((el, i) => {
-        ScrollTrigger.create({ trigger:el, start:'top 84%', onEnter() { setTimeout(() => el.classList.add('rv'), i * 150); } });
-      });
-    }
-
-    /* ── CTA ───────────────────────────────────────────── */
-    function initCTA() {
-      gsap.to(['.c-ey','.c-h','.c-btn'], { opacity:1, y:0, duration:1.4, stagger:.24, ease:'power3.out', scrollTrigger:{ trigger:'#cta', start:'top 72%' } });
-    }
-
-    /* ── Reduced motion fallback ───────────────────────── */
-    function skipAnimations() {
-      const lines = document.querySelectorAll('.w1-h1 .ln span');
-      gsap.set(['.w1-ey', lines, '.w1-sub', '#w1-scroll'], { opacity:1, y:0, transform:'none' });
-      gsap.set(['#w2','#w3'], { clipPath:'inset(0%)' });
-      document.querySelectorAll('.w2-quote .wrd').forEach(w => { w.style.opacity=1; w.style.transform='none'; });
-      gsap.set(['#w2-sig','#w2-line'], { opacity:1, transform:'none', height:'58px' });
-      document.querySelectorAll('.w3-p').forEach(p => { p.style.opacity=1; p.style.transform='none'; });
-      gsap.set(['.c-ey','.c-h','.c-btn'], { opacity:1, y:0 });
-      document.querySelectorAll('.gc').forEach(c => gsap.set(c, { opacity:1, y:0 }));
-      document.querySelectorAll('.ed-i').forEach(el => el.classList.add('rv'));
-    }
-
-  })();
   </script>
+
 </body>
 </html>
